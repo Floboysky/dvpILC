@@ -6,6 +6,7 @@ Code source utilisé dans le papier:
 
 Ce dépôt contient les scripts et les ressources utilisés pour effectuer les analyses et les hypothèses générés dans l'article ci-dessus. 
 Permet la caractérisation des domaines/résidus fonctionnels de NFIL3 dans le développement des ILC murines, et l'étude de sa relation structure/fonction.
+
 ---
 
 ## Installation
@@ -21,7 +22,7 @@ Permet la caractérisation des domaines/résidus fonctionnels de NFIL3 dans le d
 - numpy 1.26.4
 - matplotlib 3.9.2
 
-- pymol 3.1.4.1
+(- pymol 3.1.4.1)
 
 
 ### Étapes
