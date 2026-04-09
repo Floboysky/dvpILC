@@ -4,7 +4,8 @@ Code source utilisé dans le papier:
 
 ## Description
 
-Ce dépôt contient les scripts et les ressources utilisés pour effectuer les analyses et les hypothèses générés dans l'article ci-dessus. 
+Ce dépôt contient les scripts et les ressources utilisés pour effectuer les analyses et les hypothèses générés dans l'article ci-dessus.
+
 Permet la caractérisation des domaines/résidus fonctionnels de NFIL3 dans le développement des ILC murines, et l'étude de sa relation structure/fonction.
 
 ---
