@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Script that removes the /*** comments from a .fasta or .paml alignment file for EasyCodeML
+Removes /*** comments from a FASTA or PAML alignment files
 """
 
 import sys
