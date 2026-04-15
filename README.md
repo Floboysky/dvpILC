@@ -1,5 +1,5 @@
 ![header](ILC_dev.png)
-Figure adaptée de l'article [Harly et al. 2018](https://doi.org/10.1084/jem.20170832)
+Figure adaptée de [Harly et al. 2018](https://doi.org/10.1084/jem.20170832)
 
 # Influence de NFIL3 dans le développement des ILC chez la souris.
 
@@ -36,9 +36,15 @@ conda activate NFIL3_ILC
 
 ### Analyse de la conservation
 
+
+
 ### Analyse des interactions protéine-protéine
 
+
+
 ### Scripts utiles dans PyMOL
+
+
 
 ## Citation
 
