@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
+
+import math
+import numpy as np
 from pymol import cmd
 from pymol.cgo import BEGIN, END, LINEWIDTH, COLOR, VERTEX, LINES
-import numpy as np
-import math
 
 
 """

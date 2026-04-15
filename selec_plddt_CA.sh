@@ -3,6 +3,7 @@
 # Script to retrieve the plDDT scores for alpha carbon atoms (CA) from a .cif file and save them to a .json file
 # Usage: ./selec_plDDT_CA.sh /path/to/folder_with_cif_files
 
+
 extract_plDDT_to_json() {
     local input_file="$1"
     local output_file="$2"
@@ -79,4 +80,3 @@ for input_file in "$input_dir"/*.cif; do
             extract_plDDT_to_json "$input_file" "$output_file"
         fi
 done
-
