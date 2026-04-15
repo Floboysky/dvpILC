@@ -14,7 +14,9 @@ Permet la caractérisation des domaines/résidus fonctionnels, et l'étude de la
 
 ### Prérequis
 
-- conda 24.11.3
+(- conda 24.11.3)
+(- pymol 3.1.4.1)
+
 - python 3.12.3
 - pip 24.2
 - jupyter-notebook 7.2.2
@@ -22,9 +24,6 @@ Permet la caractérisation des domaines/résidus fonctionnels, et l'étude de la
 - pandas 2.2.2
 - numpy 1.26.4
 - matplotlib 3.9.2
-
-(- pymol 3.1.4.1)
-
 
 ### Étapes
 
