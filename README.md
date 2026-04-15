@@ -1,37 +1,41 @@
+![header](ILC_dev.png)
+Figure adaptée de l'article [Harly et al. 2018](https://doi.org/10.1084/jem.20170832)
+
 # Influence de NFIL3 dans le développement des ILC chez la souris.
 
 Code source utilisé dans le papier: 
 
+---
+
 ## Description
 
-Ce dépôt contient les scripts et les ressources utilisés pour effectuer les analyses et les hypothèses générés dans l'article ci-dessus.
+Ce dépôt contient les scripts et les ressources utilisés pour générer les graphiques, et les hypothèses effectués dans l'article ci-dessus.
 
-Permet la caractérisation des domaines/résidus fonctionnels, et l'étude de la relation structure/fonction du facteur de transcription NFIL3 dans le développement des ILC murins.
-
----
+Il permet la caractérisation des domaines et résidus fonctionnels, l'analyse de la relation structure-fonction, ainsi que l'étude des potentiels partenaires protéiques du facteur de transcription NFIL3 dans le développement des ILC murins.
 
 ## Installation
 
 ### Prérequis
 
-(- conda 24.11.3)
-(- pymol 3.1.4.1)
-
-- python 3.12.3
-- pip 24.2
-- jupyter-notebook 7.2.2
-- biopython 1.85
-- pandas 2.2.2
-- numpy 1.26.4
-- matplotlib 3.9.2
+- conda 24.11.3
+- pymol 3.1.4.1
 
 ### Étapes
+
+Dans un terminal anaconda lancer les commandes suivantes:
 
 ```bash
 git clone https://github.com/Floboysky/dvpILC.git
 conda env create -f environment.yml
 conda activate NFIL3_ILC
-jupyter-notebook
 ```
 
 ## Utilisation 
+
+### Analyse de la conservation
+
+### Analyse des interactions protéine-protéine
+
+### Scripts dans PyMOL
+
+## Citation
