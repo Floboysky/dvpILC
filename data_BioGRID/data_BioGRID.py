@@ -71,7 +71,6 @@ def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
     Function to create a new column in df, merged and count the unique occurrences in a key column
     
     Parameters:
-        directory (str): Path to the folder for the output file
         df_A (DataFrame): The first DataFrame
         df_B (DataFrame): The second DataFrame
         clef (str): Name of the key column for which to count unique values
