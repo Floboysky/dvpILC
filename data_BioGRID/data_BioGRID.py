@@ -66,7 +66,7 @@ def merged_csv_ods(fusion, ods, gene):
     print(f"Merged CSV file with ODS data saved in: final_merged_{gene}.csv")
 
 
-def nbr_interactor(directory, df_A, df_B, clef, gene_A, gene_B):
+def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
     """
     Function to create a new column in df, merged and count the unique occurrences in a key column
     
@@ -81,7 +81,6 @@ def nbr_interactor(directory, df_A, df_B, clef, gene_A, gene_B):
         n_unique (int): Number of unique values in the key column after merging the two CSV files
     """
     
-    # =SI(H2<I2; H2&"-"&I2; I2&"-"&H2)
     # Create the new column by combining Interactor A and Interactor B and merge the two DataFrames
     df_A[clef] = df_A.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
     df_B[clef] = df_B.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
@@ -98,23 +97,22 @@ def nbr_interactor(directory, df_A, df_B, clef, gene_A, gene_B):
     n_unique = df[clef].nunique()
     
     # Save the merged DataFrame to a new CSV file
-    df.to_csv(f"{directory}/merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
+    # df.to_csv(f"merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
     
     return n_unique  
 
 
 # Main
-folder = "BioGRID"
 gene_A = "TBL1X"
 gene_B = "TBL1XR1"
 ods = "partners_TBL1&R.ods"
 clef = "Official Symbol Interactor A-B"
 
-fusion_A = fusion_csv(f"{folder}/{gene_A}/", gene_A)
-fusion_B = fusion_csv(f"{folder}/{gene_B}/", gene_B)
+fusion_A = fusion_csv(f"{gene_A}/", gene_A)
+fusion_B = fusion_csv(f"{gene_B}/", gene_B)
 
 merged_csv_ods(fusion_A, ods, gene_A)
 merged_csv_ods(fusion_B, ods, gene_B)
 
-interactor = nbr_interactor(folder, fusion_A, fusion_B, clef, gene_A, gene_B)
+interactor = nbr_interactor(fusion_A, fusion_B, clef, gene_A, gene_B)
 print(f"Number of unique interactors with {gene_A} and {gene_B} in human and mouse = {interactor}")
