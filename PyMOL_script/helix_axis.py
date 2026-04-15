@@ -220,6 +220,7 @@ def fit_line(selection="helix_point*", name="helix_axis", extend=5.0, couleur="r
     print(f"Line '{name}' created between {p1.round(2)} and {p2.round(2)}.")
 
 
+# Main
 cmd.extend("helix_centroids", helix_centroids)
 cmd.extend("helix_centroids_dna", helix_centroids_dna)
 cmd.extend("fit_line", fit_line)
