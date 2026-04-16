@@ -5,13 +5,9 @@ Figure adaptée de [Harly et al. 2018](https://doi.org/10.1084/jem.20170832).
 
 # Influence de NFIL3 dans le développement des ILC chez la souris.
 
-Code source utilisé dans le papier: 
+Ce dépôt contient tous les scripts et les ressources utilisés pour générer les graphiques et les tableaux du papier:
 
-## Description
-
-Ce dépôt contient les scripts et les ressources utilisés pour générer les graphiques, et les hypothèses effectués dans l'article ci-dessus.
-
-Il permet la caractérisation des domaines et résidus fonctionnels, l'analyse de la relation structure-fonction, ainsi que l'étude des potentiels partenaires protéiques du facteur de transcription NFIL3 dans le développement des ILC murins.
+Ce code source permet la caractérisation des résidus fonctionnels, l'analyse de la relation structure-fonction, ainsi que l'étude de fiabilité des potentiels partenaires protéiques du facteur de transcription NFIL3. Afin de caractériser ses mécanismes d'actions dans le développement des ILC murins.
 
 ## Installation
 
@@ -30,15 +26,17 @@ conda env create -f environment.yml
 conda activate NFIL3_ILC
 ```
 
-## Utilisation 
+## Description et utilisation
+
+Dans tous les codes présentés ci-dessous, toutes les variables `path` et `name` peuvent être changés si besoin.
 
 ### Analyse de la conservation
 
-Le score pLDDT est une mesure de confiance locale par résidus (Carbone alpha). Son étude est primordiale pour identifier les régions structurellement fiables et/ou flexible d'une protéine. Son extraction est faite à partir du code `select_plddt_CA.sh`, qui permet de prendre cette donnée directement à partir des fichiers CIF obtenus avec AlphaFold3. L'utilisation de ce scrpit se fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`: 
+L'extraction du score pLDDT est faite içi à partir du code `select_plddt_CA.sh`, qui prend cette donnée directement à partir des fichiers CIF obtenus avec AlphaFold3. L'utilisation de ce script se fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`: 
 
-- `CA_bfactors_plddt.ipynb` sert à comparer et afficher les scores de bfactors qui mesure le déplacement atomique utilisée en cristallographie avec le score pLDDT utilisé par AlphaFold. 
+- `CA_bfactors_plddt.ipynb` sert à comparer et à analyser graphiquement les scores de bfactors qui mesure le déplacement atomique utilisée en cristallographie avec le score pLDDT utilisé par AlphaFold. Le fichier est divisé en deux parties, une contenant les fonctions nécessaire au bon fonctionnement du code et l'autre pour générer les graphiques.
 
-- `conservation_nfil3.ipynb` regroupe dans une dataframe les résultats de désordre (AIUPred), de fiabilité (AF3 pLDDT), de qualité d'alignement (Jalview), et de pression de conservation (rapport omega) pour une protéine particulière. Afin de permettre une analyse graphique de ces différents paramètres.
+- `conservation_nfil3.ipynb` permet une analyse graphique qui regroupe dans une dataframe les résultats de désordre (AIUPred), de fiabilité (pLDDT), de qualité d'alignement (Jalview), et de pression de conservation (rapport omega) pour une protéine particulière.
 
 ### Analyse des interactions protéine-protéine
 
