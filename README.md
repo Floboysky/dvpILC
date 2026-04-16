@@ -28,26 +28,37 @@ conda activate NFIL3_ILC
 
 ## Description et utilisation
 
-Dans tous les codes présentés ci-dessous, toutes les variables `path` et `name` peuvent être changés par l'utilisateur si besoin.
+Le dossier `example_data` contient des exemples de données qui peuvent être manipulées par le code source. Dans tous les codes présentés ci-dessous, toutes les variables `path` et `name` peuvent être changés par l'utilisateur si besoin.
 
 ### Analyse de la conservation
 
 Ce chapitre décrit les bonnes pratique d'utilisation des codes contenus dans le dossier `Analysis`.
+
 L'extraction du score pLDDT est faite içi à partir du code `select_plddt_CA.sh`, qui prend cette donnée directement à partir des fichiers CIF obtenus avec AlphaFold3. L'utilisation de ce script se fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`.
 
-- `CA_bfactors_plddt.ipynb` sert à comparer et à analyser graphiquement les scores de bfactors utilisée en cristallographie avec le score pLDDT utilisé par AlphaFold. Le fichier est divisé en deux parties, la première contenant les fonctions nécessaire au fonctionnement du code et l'autre pour générer les graphiques.
+- `CA_bfactors_plddt.ipynb` sert à comparer et à analyser graphiquement les scores de bfactors utilisée en cristallographie avec le score pLDDT utilisé par AlphaFold. Le fichier est divisé en deux parties, la première contenant les fonctions nécessaire au fonctionnement du code et l'autre pour générer les graphiques. Exemple de 
 
-- `conservation_nfil3.ipynb` permet une analyse graphique qui regroupe dans une dataframe les résultats de désordre (AIUPred), de fiabilité (pLDDT), de qualité d'alignement (Jalview), et de pression de conservation (rapport omega) pour une protéine donnée.
+- `conservation.ipynb` permet une analyse graphique qui regroupe dans une dataframe les résultats de désordre (AIUPred), de fiabilité (pLDDT), de qualité d'alignement (Jalview), et de pression de conservation (rapport omega) pour une protéine donnée.
 
-- `clean_fasta.py` est le code permettant de nettoyer l'index des différentes séquences génomiques générés par PAL2NAL, pour une utilisation dans EasyCodeML, afin d'étudier la pression de conservation subie par chaque résidu d'une protéine au cours de l'évolution.
+- `clean_fasta.py` est le code permettant de nettoyer l'index des différentes séquences génomiques générés par PAL2NAL. À utiliser avant de lancer le programme EasyCodeML.
 
 ### Analyse des interactions protéine-protéine
 
+Ce chapitre décrit les bonnes pratique d'utilisation du code contenu dans le dossier `PPI`.
 
+Comme pour le chapitre ["Analyse de la conservation"](#analyse-de-la-conservation), l'extraction du pLDDT est faite automatiquement par `select_plddt_CA.sh`.
+
+- `alphafold3_lis_contact.ipynb`
+
+### Données dans BioGRID
+
+- `data_BioGRID.py`
 
 ### Scripts utiles dans PyMOL
 
+- `helix_axis.py`
 
+- `PyMOL_color.py`
 
 ## Citation
 
