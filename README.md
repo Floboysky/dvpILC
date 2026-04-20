@@ -34,7 +34,7 @@ Le dossier `example_data` contient des exemples de données qui peuvent être ma
 
 Ce chapitre décrit les bonnes pratique d'utilisation des codes contenus dans le dossier `Analysis`.
 
-L'extraction du score pLDDT est faite à partir du script `select_plddt_CA.sh`, qui prend cette donnée directement à partir des fichiers CIF obtenus avec AlphaFold3. Son utilisation ce fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`.
+L'extraction du score pLDDT est faite à partir du script `select_plddt_CA.sh`, qui prend cette donnée directement à partir des fichiers CIF obtenus avec AlphaFold3. Son utilisation ce fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`, et doit être situé dans leur dossier parent.
 
 - `CA_bfactors_plddt.ipynb` sert à comparer et à analyser graphiquement les scores de bfactors utilisée en cristallographie avec le score pLDDT utilisé par AlphaFold. Le fichier est divisé en deux parties, la première contenant les fonctions nécessaire au fonctionnement du code et la seconde pour générer les graphiques. Exemple de fichiers en input `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r` (ouput de AF3) pour l'étude du pLDDT, et `example_data/MeCP2_TBL1R/Xp` pour l'étude du bfactor (PDB: 5NAF). Les exemples de fichiers output du programme sont dans le dossier `example_data/MeCP2_TBL1R/Plots`.
 
@@ -52,7 +52,7 @@ L'extraction du score pLDDT est faite à partir du script `select_plddt_CA.sh`, 
 
 Ce chapitre décrit les bonnes pratique d'utilisation du code contenu dans le dossier `PPI`.
 
-Comme pour le chapitre ["Analyse de la conservation"](#analyse-de-la-conservation), l'extraction du pLDDT est faite automatiquement avec l'aide du script `select_plddt_CA.sh`.
+Comme pour le chapitre ["Analyse de la conservation"](#analyse-de-la-conservation), l'extraction du pLDDT est automatiquement faite avec l'aide du script `select_plddt_CA.sh`. Il est utilisé autoamtiquement par le script `alphafold3_lis_contact.ipynb`, et doit être placé dans son dossier parent.
 
 - `alphafold3_lis_contact.ipynb`
 
