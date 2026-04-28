@@ -11,7 +11,7 @@ This source code enables the generation of graphs and data that help to characte
 
 ## Installation
 
-## Requirement
+### Requirement
 
 - conda version 24.11.3
 
@@ -27,7 +27,7 @@ conda activate NFIL3_ILC
 
 ## Description and Usage
 
-The `example_data` directory contains sample data that can be manipulated by the source code. In all the code examples provided below, the `path` and `name` variables can be changed by the user.
+The `example_data/` directory contains sample data that can be manipulated by the source code. In all the code examples provided below, the `path` and `name` variables can be changed by the user.
 
 ### Conservation Analysis
 
@@ -35,10 +35,10 @@ This chapter describes best practices for using the code files in the `Analysis/
 
 The pLDDT score is extracted using the `select_plddt_CA.sh` script, which processes the CIF files obtained with [AlphaFold3](https://www.nature.com/articles/s41586-024-07487-w) (AF3) directly. It is used automatically in the files `CA_bfactors_plddt.ipynb` and `conservation_nfil3.ipynb`, and must be located in their parent folder.
 
-- `CA_bfactors_plddt.ipynb` is used to compare and graphically analyze b-factor scores used in crystallography with the pLDDT score used by AF3. Example of input files for the pLDDT study (ouput of AF3) in `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r/`, and for the b-factor study ([5NAF](https://www.rcsb.org/structure/5NAF)) in `example_data/MeCP2_TBL1R/Xp/`. The resulting output graphs are in the folder `example_data/MeCP2_TBL1R/Plots/`.
+- `CA_bfactors_plddt.ipynb` is used to compare and graphically analyze b-factor scores used in crystallography with the pLDDT score used by AF3. Example of input files for the pLDDT study (ouput of AF3) in `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r/`, and for the b-factor study ([5NAF](https://www.rcsb.org/structure/5NAF)) in `example_data/MeCP2_TBL1R/Xp/`. The output graphs are in the folder `example_data/MeCP2_TBL1R/Plots/`.
 
 - `conservation.ipynb` enables graphical analysis that aggregates data into a dataframe (in `example_data/NFIL3/Results/`), the results for disorder probability, reliability, alignment quality, and conservation pressure for each residue of a specific protein:
-    - The input file for the intrinsic disorder analysis is a JSON file obtained from the [AIUPred](https://academic.oup.com/nar/article/52/W1/W176/7673484) server(`example_data/NFIL3/AIUPred/`).
+    - The input file for the intrinsic disorder analysis is a JSON file obtained from the [AIUPred](https://academic.oup.com/nar/article/52/W1/W176/7673484) server (`example_data/NFIL3/AIUPred/`).
     - For reliability (pLDDT), an AF3 output was used as an example (`example_data/NFIL3/fold_mnfil3/`).
     - The alignment statistics are obtained from the output files of the [Jalview](https://academic.oup.com/bioinformatics/article/25/9/1189/203460) tool following a global alignment of the protein sequences (`example_data/NFIL3/Jalview/`):
 
@@ -63,7 +63,7 @@ As with the chapter [“Conservation Analysis”](#conservation-analysis), pLDDT
 
 Folder containing scripts to assist in the analysis of 3D protein models. For direct use in [PyMOL](https://www.pymol.org/).
 
-- `helix_axis.py` is a program that plots a line that passes as close as possible to the center of mass of each helix turn (protein or DNA).
+- `helix_axis.py` is a program that draws a line passing as close as possible to the center of mass of each helix turn (protein or DNA).
 
 - `PyMOL_color.py` is used to color the alpha carbons of proteins using the values contained in the output files of the `conservation.ipynb` (jalview_output.json) and `alphafold3_lis_contact.ipynb` (data_all.csv) scripts.
 
