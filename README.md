@@ -1,23 +1,23 @@
 ![header](ILC_dev.png)
-Figure adaptée de [Harly et al. 2018](https://doi.org/10.1084/jem.20170832).
+Figure adapted from [Harly et al. 2018](https://doi.org/10.1084/jem.20170832).
 
 ---
 
-# Influence de NFIL3 dans le développement des ILC chez la souris.
+# The role of NFIL3 in the development of ILCs in mice.
 
-Ce dépôt contient tous les scripts et les ressources utilisés dans le papier:
+This repository contains all the scripts and resources used in the paper:
 
-Ce code source permet la génération des graphiques et données contribuant à caractériser les résidus fonctionnels, à analyser la relation structure-fonction, ainsi qu'à étudier les potentiels partenaires protéiques du facteur de transcription NFIL3, afin de mieux comprendre ses mécanismes d'actions dans le développement des ILC murins.
+This source code enables the generation of graphs and data that help to characterize functional residues, analyze the structure-function relationship, and investigate potential protein partners of the NFIL3 transcription factor, to better understanding its mechanisms of action in the development of murine ILCs.
 
 ## Installation
 
-### Prérequis
+## Requirement
 
 - conda version 24.11.3
 
-### Étapes
+### Steps
 
-Dans un terminal anaconda lancer les commandes suivantes:
+In an Anaconda terminal, run the following commands:
 
 ```bash
 git clone https://github.com/Floboysky/dvpILC.git
@@ -25,47 +25,47 @@ conda env create -f environment.yml
 conda activate NFIL3_ILC
 ```
 
-## Description et utilisation
+## Description and Usage
 
-Le dossier `example_data` contient des exemples de données qui peuvent être manipulées par le code source. Dans tous les codes présentés ci-dessous, toutes les variables `path` et `name` peuvent être changés par l'utilisateur.
+The `example_data` directory contains sample data that can be manipulated by the source code. In all the code examples provided below, the `path` and `name` variables can be changed by the user.
 
-### Analyse de la conservation
+### Conservation Analysis
 
-Ce chapitre décrit les bonnes pratiques d'utilisation des codes contenus dans le dossier `Analysis`.
+This chapter describes best practices for using the code files in the `Analysis/` directory.
 
-L'extraction du score pLDDT est faite à partir du script `select_plddt_CA.sh`, qui prend cette donnée directement à partir des fichiers CIF obtenus avec [AlphaFold3](https://www.nature.com/articles/s41586-024-07487-w) (AF3). Son utilisation se fait automatiquement dans les fichiers `CA_bfactors_plddt.ipynb` et `conservation_nfil3.ipynb`, et doit être situé dans leur dossier parent.
+The pLDDT score is extracted using the `select_plddt_CA.sh` script, which processes the CIF files obtained with [AlphaFold3](https://www.nature.com/articles/s41586-024-07487-w) (AF3) directly. It is used automatically in the files `CA_bfactors_plddt.ipynb` and `conservation_nfil3.ipynb`, and must be located in their parent folder.
 
-- `CA_bfactors_plddt.ipynb` sert à comparer et à analyser graphiquement les scores de bfactors utilisée en cristallographie avec le score pLDDT utilisé par AF3. Le fichier est divisé en deux parties, la première contenant les fonctions nécessaire au fonctionnement du code et la seconde pour générer les graphiques. Exemple de fichiers à mettre en input pour l'étude du pLDDT (ouput de AF3: `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r`), et pour l'étude du bfactor ([5NAF](https://www.rcsb.org/structure/5NAF): `example_data/MeCP2_TBL1R/Xp`). Les graphiques d'output obtenus sont dans le dossier `example_data/MeCP2_TBL1R/Plots`.
+- `CA_bfactors_plddt.ipynb` is used to compare and graphically analyze b-factor scores used in crystallography with the pLDDT score used by AF3. Example of input files for the pLDDT study (ouput of AF3) in `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r/`, and for the b-factor study ([5NAF](https://www.rcsb.org/structure/5NAF)) in `example_data/MeCP2_TBL1R/Xp/`. The resulting output graphs are in the folder `example_data/MeCP2_TBL1R/Plots/`.
 
-- `conservation.ipynb` permet une analyse graphique qui regroupe dans une dataframe (`example_data/NFIL3/Results`) les résultats de probabilité de désordre, de fiabilité, de qualité d'alignement, et de pression de conservation pour chaque résidu d'une protéine spécifique:
-    - L'input pour l'étude du désordre intrinsèque est un fichier JSON obtenu via le serveur [AIUPred](https://academic.oup.com/nar/article/52/W1/W176/7673484) (`example_data/NFIL3/AIUPred`).
-    - Pour la fiabilité (pLDDT), un output de AF3 à été pris en exemple (`example_data/NFIL3/fold_mnfil3`).
-    - Les statistiques d'alignements sont obtenu à partir des fichiers d'output de l'outil [Jalview](https://academic.oup.com/bioinformatics/article/25/9/1189/203460) après un alignement global de séquences protéiques. (`example_data/NFIL3/Jalview`):
+- `conservation.ipynb` enables graphical analysis that aggregates data into a dataframe (in `example_data/NFIL3/Results/`), the results for disorder probability, reliability, alignment quality, and conservation pressure for each residue of a specific protein:
+    - The input file for the intrinsic disorder analysis is a JSON file obtained from the [AIUPred](https://academic.oup.com/nar/article/52/W1/W176/7673484) server(`example_data/NFIL3/AIUPred/`).
+    - For reliability (pLDDT), an AF3 output was used as an example (`example_data/NFIL3/fold_mnfil3/`).
+    - The alignment statistics are obtained from the output files of the [Jalview](https://academic.oup.com/bioinformatics/article/25/9/1189/203460) tool following a global alignment of the protein sequences (`example_data/NFIL3/Jalview/`):
 
-        - Le fichier "jalview_files.json" via l'onglet "Files/Output to Textbox" pour les données de séquences.
-        - Le fichier "jalview_annotation.csv" via l'onglet "Files/Export Annotations..." pour les données brut.
+        - The "jalview_files.json" file with the “Files/Output to Textbox” tab for sequence data.
+        - The "jalview_annotation.csv" file with the "Files/Export Annotations..." tab for the raw data.
 
-    - L'analyse de la pression de conservation à été obtenue via le programme [EasyCodeML](https://onlinelibrary.wiley.com/doi/10.1002/ece3.5015) (`example_data/NFIL3/CodeML`). Pour fonctionner EasyCodeML à besoin d'un alignement protéique au format FASTA, de l'arbre phylogénétique de celui-ci au format NWK, et de la correspondance des séquences protéiques alignées avec les séquences génomiques au format PAML (obtenu avec le serveur [PAL2NAL](https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/gkl315)). Le script `clean_fasta.py` permet de nettoyer l'index des différentes séquences génomiques ainsi alignées avant leur utilisation dans EasyCodeML. Pour chaque site extrait d'EasyCodeML dans le model 8 (M8) obtenu avec l'option "Site Model", le script extrait son estimation du rapport omega, son incertitude ainsi que sa probalité d'être dans la classe n°1.
+    -The analysis of the holding pressure was obtained using the [EasyCodeML](https://onlinelibrary.wiley.com/doi/10.1002/ece3.5015) program (`example_data/NFIL3/CodeML/`). To run, EasyCodeML requires a protein alignment in FASTA format, the corresponding phylogenetic tree in NWK format, and the mapping of the aligned protein sequences to the genomic sequences (codons) in PAML format (obtained from the [PAL2NAL](https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/gkl315) server). The `clean_fasta.py` script is used to clean the index of the various aligned genomic sequences before they are used in EasyCodeML. For each site extracted from EasyCodeML in the Model 8 (M8), obtained using the “Site Model” option, the script outputs its estimate the omega ratio, uncertainty, and the probability that the site belongs to the class with the highest conservation pressure (class 1).
 
-### Analyse des interactions protéine-protéine
+### Analysis of protein-protein interactions
 
-Ce chapitre décrit les bonnes pratiques d'utilisation du code contenu dans le dossier `PPI`.
+This chapter describes best practices for using the code contained in the `PPI/` folder.
 
-Comme pour le chapitre ["Analyse de la conservation"](#analyse-de-la-conservation), l'extraction du pLDDT est automatiquement faite avec l'aide du script `select_plddt_CA.sh`. Il est utilisé par le script `alphafold3_lis_contact.ipynb`, et doit être placé dans son dossier parent.
+As with the chapter [“Conservation Analysis”](#conservation-analysis), pLDDT extraction is performed automatically using the `select_plddt_CA.sh` script. It is used by `alphafold3_lis_contact.ipynb` and must be placed in its parent directory.
 
-- `alphafold3_lis_contact.ipynb`: est un programme adapté de [Kim et al. 2024](http://biorxiv.org/lookup/doi/10.1101/2024.02.19.580970), pour l'analyse des scores de PAE, iPTM, LIS, cLIS et LIA d'un complexe de deux protéines obtenu par AF3. Un exemple de donnée d'input a été placé dans le dossier `example_data/NFIL3_TBL1R`. Ce programme est aussi capable de fournir un graphique des pLDDT des carbones alpha pour tous les résidus, ainsi que les graphiques des valeurs de LIS et cLIS pour les résidus positifs (valeur max et moyenne) de chaque chaine du complexe. La sortie du programme est un fichier CSV contenant les résidus avec au moins une valeur de LIS ou de cLIS positive pour chaque protéine.
+- `alphafold3_lis_contact.ipynb`: is a modified version of [Kim et al. 2024](http://biorxiv.org/lookup/doi/10.1101/2024.02.19.580970), for the analysis of PAE, iPTM, LIS, cLIS, and LIA scores of a two-protein complex obtained by AF3. An example of input data has been placed in the folder `example_data/NFIL3_TBL1R/`. It can also generate a plot of the alpha-carbon pLDDTs for all residues, as well as plots of the LIS and cLIS values for the positive residues (maximum and average values) of each chain in the complex. The program's output is a CSV file containing the residues (filtered or unfiltered) with at least one positive LIS or cLIS value for each protein.
 
-### Données dans BioGRID
+### BioGRID data
 
-- `data_BioGRID.py` permet de fusionner des fichiers CSV de donnés [BioGRID](https://thebiogrid.org/), pour permettre de compter le nombre d'occurences unique dans une colonne clé. Exemple avec la fusion des intéractions de TBL1 et TBL1R dans le dossier `data_BioGRID/TBL1X` et `data_BioGRID/TBL1XR1`.
+- `data_BioGRID.py` can merge CSV data files [BioGRID](https://thebiogrid.org/), to count the number of unique occurrences in a specific key. Example of the merging of TBL1 and TBL1R interactions in the file `data_BioGRID/TBL1X/` and `data_BioGRID/TBL1XR1/`.
 
-### Scripts utiles dans PyMOL
+### Useful scripts in PyMOL
 
-Dossier contenant des scripts pour aider l'analyse des modèles protéique en 3D. A utiliser directement dans l'outil [PyMOL](https://www.pymol.org/).
+Folder containing scripts to assist in the analysis of 3D protein models. For direct use in [PyMOL](https://www.pymol.org/).
 
-- `helix_axis.py` est un programme qui trace une droite passant au plus proche du centre de gravité de chaque tour d'hélice (protéine ou ADN).
+- `helix_axis.py` is a program that plots a line that passes as close as possible to the center of mass of each helix turn (protein or DNA).
 
-- `PyMOL_color.py`est utilisé pour colorer les carbones alpha des protéines avec les valeurs contenues dans les fichiers de résultats des scripts `conservation.ipynb` (jalview_output.json) et `alphafold3_lis_contact.ipynb` (data_all.csv files).
+- `PyMOL_color.py` is used to color the alpha carbons of proteins using the values contained in the output files of the `conservation.ipynb` (jalview_output.json) and `alphafold3_lis_contact.ipynb` (data_all.csv) scripts.
 
 ## Citation
 
