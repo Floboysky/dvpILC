@@ -10,8 +10,8 @@ from pymol.cgo import BEGIN, END, LINEWIDTH, COLOR, VERTEX, LINES
 A program that places pseudo-atoms at the centroid of each helix turn (protein/DNA), then fits a 3D line passing as close as possible (using PCA). Can be used directly in PyMOL.
 1) In PyMOL, navigate to the directory of the program and run "run helix_axis.py".
 2) Select the residues of the protein or DNA (helix).
-3) "helix_centroids" (for the protein), or "helix_centroids_dna" (for the DNA), to create the pseudo-atoms. Change the name if needed (to avoid overwriting previous atoms).
-4) "fit_line" to fit the 3D line. Change the name if needed (to avoid overwriting previous lines).
+3) "helix_centroids" (for the protein), or "helix_centroids_dna" (for the DNA), to create the pseudo-atoms.
+4) "fit_line" to fit the 3D line.
 """
 
 
@@ -96,7 +96,8 @@ def helix_centroids_dna(selection="sele", step=3.6, name="helix_point"):
     residues = []
     current = None
     atoms_buffer = []
-
+    
+    # Group atoms by residue (using segi, chain, resi as key)
     for atom in model.atom:
         key = (atom.segi, atom.chain, atom.resi)
         if key != current:
@@ -107,17 +108,20 @@ def helix_centroids_dna(selection="sele", step=3.6, name="helix_point"):
         else:
             atoms_buffer.append(atom)
 
+    # Add the last buffered residue
     if atoms_buffer:
         residues.append(atoms_buffer)
 
+    # Check if any residues were found
     if len(residues) == 0:
         print("No results found in the selection.")
         return
 
     residues_per_turn = int(round(step))
     n_turns = int(math.ceil(len(residues) / residues_per_turn))
-
     count = 1
+    
+    # For each turn, calculate the centroid of the corresponding residues and create a pseudo-atom
     for i in range(n_turns):
         chunk = residues[i*residues_per_turn:(i+1)*residues_per_turn]
         if not chunk:
