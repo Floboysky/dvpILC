@@ -23,7 +23,7 @@ def color_by_residues(key, file, sele="all", grad="rainbow_rev"):
     
     if ext == ".json":
         # Load JSON file
-        with open(file, 'r') as f:
+        with open(file, "r") as f:
             data = json.load(f)
             
         nums = data["num"]
