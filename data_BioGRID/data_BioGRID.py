@@ -66,7 +66,7 @@ def merged_csv_ods(fusion, ods, gene):
     print(f"Merged CSV file with ODS data saved in: final_merged_{gene}.csv")
 
 
-def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
+def nbr_interactor(df_A, df_B, clef, gene_A="TBL1X", gene_B="TBL1XR1"):
     """
     Function to create a new column in df, merged and count the unique occurrences in a key column
     
@@ -80,6 +80,10 @@ def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
         n_unique (int): Number of unique values in the key column after merging the two CSV files
     """
     
+    if df_A and df_B and isinstance(df_A, str) and isinstance(df_B, str):
+        df_A = pd.read_csv(df_A, sep="\t", quotechar="\"", encoding="utf-8")
+        df_B = pd.read_csv(df_B, sep="\t", quotechar="\"", encoding="utf-8")
+    
     # Create the new column by combining Interactor A and Interactor B and merge the two DataFrames
     df_A[clef] = df_A.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
     df_B[clef] = df_B.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
@@ -87,6 +91,8 @@ def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
     
     # Remove the redundant entries from the key column
     df[clef] = df[clef].str.upper()
+    df[clef] = df[clef].str.replace(f"{gene_A}-{gene_B}", "", regex=False)
+    df[clef] = df[clef].str.replace(f"{gene_B}-{gene_A}", "", regex=False)
     df[clef] = df[clef].str.replace(f"-{gene_A}", "", regex=False)
     df[clef] = df[clef].str.replace(f"-{gene_B}", "", regex=False)
     df[clef] = df[clef].str.replace(f"{gene_A}-", "", regex=False)
@@ -96,7 +102,7 @@ def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
     n_unique = df[clef].nunique()
     
     # Save the merged DataFrame to a new CSV file
-    # df.to_csv(f"merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
+    df.to_csv(f"merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
     
     return n_unique  
 
@@ -110,8 +116,11 @@ clef = "Official Symbol Interactor A-B"
 fusion_A = fusion_csv(f"{gene_A}/", gene_A)
 fusion_B = fusion_csv(f"{gene_B}/", gene_B)
 
-merged_csv_ods(fusion_A, ods, gene_A)
-merged_csv_ods(fusion_B, ods, gene_B)
+#merged_csv_ods(fusion_A, ods, gene_A)
+#merged_csv_ods(fusion_B, ods, gene_B)
 
-interactor = nbr_interactor(fusion_A, fusion_B, clef, gene_A, gene_B)
-print(f"Number of unique interactors with {gene_A} and {gene_B} in human and mouse = {interactor}")
+interactor = nbr_interactor("BioGRID_merged_TBL1X.csv", "BioGRID_merged_TBL1XR1.csv", clef, gene_A, gene_B)
+print(f"Number of unique interactors with '{gene_A}' and '{gene_B}' in human and mouse = {interactor}")
+
+interactor = nbr_interactor("NFIL3/BIOGRID-GENE-110855-5.0.257.tab3.csv", "NFIL3/BIOGRID-GENE-201749-5.0.257.tab3.csv", clef, "NFIL3", "")
+print(f"Number of unique interactors with 'NFIL3' in human and mouse = {interactor}")
