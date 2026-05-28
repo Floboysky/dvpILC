@@ -14,6 +14,7 @@ This source code enables the generation of graphs and data that help to characte
 ### Requirement
 
 - conda version 24.11.3
+- Ubuntu version 24.04
 
 ### Steps
 

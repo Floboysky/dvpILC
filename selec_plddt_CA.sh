@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Script to retrieve the plDDT scores for alpha carbon atoms (CA) from a .cif file and save them to a .json file
+# Script to retrieve the plDDT scores for alpha carbon atoms (CA) from a .cif file and save them to a .json file.
 # Usage: ./selec_plDDT_CA.sh /path/to/folder_with_cif_files
+# NOTE: You may need to run the "dos2unix" command before you can run this script.
 
 
 extract_plDDT_to_json() {
