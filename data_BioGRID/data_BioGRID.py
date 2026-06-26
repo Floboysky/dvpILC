@@ -37,6 +37,7 @@ def fusion_csv(directory, gene):
 def merged_csv_ods(fusion, ods, gene):
     """
     Merges the BioGRID merged CSV with the ODS file containing additional data.
+    
     Parameters:
         fusion (DataFrame): The merged DataFrame from the fusion_csv function
         ods (str): Path to the ODS file containing additional data
@@ -66,7 +67,7 @@ def merged_csv_ods(fusion, ods, gene):
     print(f"Merged CSV file with ODS data saved in: final_merged_{gene}.csv")
 
 
-def nbr_interactor(df_A, df_B, clef, gene_A="TBL1X", gene_B="TBL1XR1"):
+def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
     """
     Function to create a new column in df, merged and count the unique occurrences in a key column
     
@@ -91,18 +92,27 @@ def nbr_interactor(df_A, df_B, clef, gene_A="TBL1X", gene_B="TBL1XR1"):
     
     # Remove the redundant entries from the key column
     df[clef] = df[clef].str.upper()
-    df[clef] = df[clef].str.replace(f"{gene_A}-{gene_B}", "", regex=False)
-    df[clef] = df[clef].str.replace(f"{gene_B}-{gene_A}", "", regex=False)
-    df[clef] = df[clef].str.replace(f"-{gene_A}", "", regex=False)
-    df[clef] = df[clef].str.replace(f"-{gene_B}", "", regex=False)
-    df[clef] = df[clef].str.replace(f"{gene_A}-", "", regex=False)
-    df[clef] = df[clef].str.replace(f"{gene_B}-", "", regex=False)
+    if gene_B == "":
+        df[clef] = df[clef].str.replace(f"{gene_A}-{gene_A}", f"{gene_A}", regex=False)
+        df[clef] = df[clef].str.replace(f"-{gene_A}", "", regex=False)
+        df[clef] = df[clef].str.replace(f"{gene_A}-", "", regex=False)
+    else:
+        df[clef] = df[clef].str.replace(f"{gene_A}-{gene_B}" or f"{gene_B}-{gene_A}", f"{gene_A}{gene_B}", regex=False)
+        df[clef] = df[clef].str.replace(f"{gene_A}-{gene_A}", f"{gene_A}", regex=False)
+        df[clef] = df[clef].str.replace(f"{gene_B}-{gene_B}", f"{gene_B}", regex=False)
+        df[clef] = df[clef].str.replace(f"-{gene_B}", "", regex=False)
+        df[clef] = df[clef].str.replace(f"-{gene_A}", "", regex=False)
+        df[clef] = df[clef].str.replace(f"{gene_B}-", "", regex=False)
+        df[clef] = df[clef].str.replace(f"{gene_A}-", "", regex=False)
 
     # Count the unique values in the key column
     n_unique = df[clef].nunique()
     
     # Save the merged DataFrame to a new CSV file
-    df.to_csv(f"merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
+    if gene_B == "":
+        df.to_csv(f"merged_interactors_{gene_A}.csv", sep="\t", index=False)
+    else:
+        df.to_csv(f"merged_interactors_{gene_A}_{gene_B}.csv", sep="\t", index=False)
     
     return n_unique  
 
@@ -110,7 +120,7 @@ def nbr_interactor(df_A, df_B, clef, gene_A="TBL1X", gene_B="TBL1XR1"):
 # Main
 gene_A = "TBL1X"
 gene_B = "TBL1XR1"
-ods = "partners_TBL1&R.ods"
+#ods = "partners_TBL1&R.ods"
 clef = "Official Symbol Interactor A-B"
 
 fusion_A = fusion_csv(f"{gene_A}/", gene_A)
@@ -119,8 +129,9 @@ fusion_B = fusion_csv(f"{gene_B}/", gene_B)
 #merged_csv_ods(fusion_A, ods, gene_A)
 #merged_csv_ods(fusion_B, ods, gene_B)
 
-interactor = nbr_interactor("BioGRID_merged_TBL1X.csv", "BioGRID_merged_TBL1XR1.csv", clef, gene_A, gene_B)
+interactor = nbr_interactor(f"BioGRID_merged_{gene_A}.csv", f"BioGRID_merged_{gene_B}.csv", clef, gene_A, gene_B)
 print(f"Number of unique interactors with '{gene_A}' and '{gene_B}' in human and mouse = {interactor}")
 
-interactor = nbr_interactor("NFIL3/BIOGRID-GENE-110855-5.0.257.tab3.csv", "NFIL3/BIOGRID-GENE-201749-5.0.257.tab3.csv", clef, "NFIL3", "")
-print(f"Number of unique interactors with 'NFIL3' in human and mouse = {interactor}")
+gene = "NFIL3"
+interactor = nbr_interactor(f"{gene}/BIOGRID-GENE-110855-5.0.257.tab3.csv", f"{gene}/BIOGRID-GENE-201749-5.0.257.tab3.csv", clef, gene, "")
+print(f"Number of unique interactors with {gene} in human and mouse = {interactor}")
