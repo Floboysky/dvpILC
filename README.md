@@ -1,4 +1,5 @@
 ![header](dev_ILC.png)
+
 Figure adapted from [Das et al. 2026](https://doi.org/10.1038/s41590-025-02414-1).
 
 ---
