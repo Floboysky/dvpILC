@@ -6,7 +6,7 @@ import pandas as pd
 
 def fusion_csv(directory, gene):
     """
-    Automatically merges the two CSV files in a folder.
+    Automatically merged two CSV files in a folder.
 
     Parameters:
         directory (str): Path to the folder containing the CSV files
@@ -36,7 +36,7 @@ def fusion_csv(directory, gene):
 
 def merged_csv_ods(fusion, ods, gene):
     """
-    Merges the BioGRID merged CSV with the ODS file containing additional data.
+    Merged the BioGRID CSV with the ODS file containing additional data.
     
     Parameters:
         fusion (DataFrame): The merged DataFrame from the fusion_csv function
@@ -86,8 +86,8 @@ def nbr_interactor(df_A, df_B, clef, gene_A, gene_B):
         df_B = pd.read_csv(df_B, sep="\t", quotechar="\"", encoding="utf-8")
     
     # Create the new column by combining Interactor A and Interactor B and merge the two DataFrames
-    df_A[clef] = df_A.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
-    df_B[clef] = df_B.apply(lambda row: f"{row['Official Symbol Interactor A']}-{row['Official Symbol Interactor B']}" if row['Official Symbol Interactor A'] < row['Official Symbol Interactor B'] else f"{row['Official Symbol Interactor B']}-{row['Official Symbol Interactor A']}", axis=1)
+    df_A[clef] = df_A.apply(lambda row: f"{row["Official Symbol Interactor A"]}-{row["Official Symbol Interactor B"]}" if row["Official Symbol Interactor A"] < row["Official Symbol Interactor B"] else f"{row["Official Symbol Interactor B"]}-{row["Official Symbol Interactor A"]}", axis=1)
+    df_B[clef] = df_B.apply(lambda row: f"{row["Official Symbol Interactor A"]}-{row["Official Symbol Interactor B"]}" if row["Official Symbol Interactor A"] < row["Official Symbol Interactor B"] else f"{row["Official Symbol Interactor B"]}-{row["Official Symbol Interactor A"]}", axis=1)
     df = pd.concat([df_A, df_B], ignore_index=True)
     
     # Remove the redundant entries from the key column
