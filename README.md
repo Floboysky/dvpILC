@@ -1,9 +1,9 @@
 ![header](ILC_dev.png)
-Figure adapted from [Harly et al. 2018](https://doi.org/10.1084/jem.20170832).
+Figure adapted from [Das et al. 2026](https://doi.org/10.1038/s41590-025-02414-1).
 
 ---
 
-# The role of NFIL3 in the development of ILCs in mice.
+# NFIL3 triggers innate lymphoid cell specification through gene repression.
 
 This repository contains all the scripts and resources used in a paper currently being published.
 
