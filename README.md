@@ -5,7 +5,7 @@ Figure adapted from [Harly et al. 2018](https://doi.org/10.1084/jem.20170832).
 
 # The role of NFIL3 in the development of ILCs in mice.
 
-This repository contains all the scripts and resources used in the paper:
+This repository contains all the scripts and resources used in a paper currently being published.
 
 This source code enables the generation of graphs and data that help to characterize functional residues, analyze the structure-function relationship, and investigate potential protein partners of the NFIL3 transcription factor, to better understanding its mechanisms of action in the development of murine ILCs.
 
@@ -35,7 +35,7 @@ The `example_data/` directory contains sample data that can be manipulated by th
 
 This chapter describes best practices for using the code files in the `Analysis/` directory.
 
-The pLDDT score is extracted using the `select_plddt_CA.sh` script, which processes the CIF files obtained with [AlphaFold3](https://www.nature.com/articles/s41586-024-07487-w) (AF3) directly. It is used automatically in the files `CA_bfactors_plddt.ipynb` and `conservation_nfil3.ipynb`, and must be located in their parent folder.
+The pLDDT score is extracted using the `select_plddt_CA.sh` script, which processes the CIF files obtained with [AlphaFold3](https://www.nature.com/articles/s41586-024-07487-w) (AF3) directly. It's used automatically in the files `CA_bfactors_plddt.ipynb` and `conservation_nfil3.ipynb`, and must be located in their parent folder.
 
 - `CA_bfactors_plddt.ipynb` is used to compare and graphically analyze b-factor scores used in crystallography with the pLDDT score used by AF3. Example of input files for the pLDDT study (ouput of AF3) in `example_data/MeCP2_TBL1R/fold_mmecp2_mtbl1r/`, and for the b-factor study ([5NAF](https://www.rcsb.org/structure/5NAF)) in `example_data/MeCP2_TBL1R/Xp/`. The output graphs are in the folder `example_data/MeCP2_TBL1R/Plots/`.
 
@@ -44,8 +44,8 @@ The pLDDT score is extracted using the `select_plddt_CA.sh` script, which proces
     - For reliability (pLDDT), an AF3 output was used as an example (`example_data/NFIL3/fold_mnfil3/`).
     - The alignment statistics are obtained from the output files of the [Jalview](https://academic.oup.com/bioinformatics/article/25/9/1189/203460) tool following a global alignment of the protein sequences (`example_data/NFIL3/Jalview/`):
 
-        - The "jalview_files.json" file with the “Files/Output to Textbox” tab for sequence data.
-        - The "jalview_annotation.csv" file with the "Files/Export Annotations..." tab for the raw data.
+        - The "jalview_files.json" file is generated using the “Files/Output to Textbox” tab for sequence data.
+        - The "jalview_annotation.csv" file is generated using the "Files/Export Annotations..." tab for the raw data.
 
     -The analysis of the holding pressure was obtained using the [EasyCodeML](https://onlinelibrary.wiley.com/doi/10.1002/ece3.5015) program (`example_data/NFIL3/CodeML/`). To run, EasyCodeML requires a protein alignment in FASTA format, the corresponding phylogenetic tree in NWK format, and the mapping of the aligned protein sequences to the genomic sequences (codons) in PAML format (obtained from the [PAL2NAL](https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/gkl315) server). The `clean_fasta.py` script is used to clean the index of the various aligned genomic sequences before they are used in EasyCodeML. For each site extracted from EasyCodeML in the Model 8 (M8), obtained using the “Site Model” option, the script outputs its estimate the omega ratio, uncertainty, and the probability that the site belongs to the class with the highest conservation pressure (class 1).
 
@@ -55,7 +55,7 @@ This chapter describes best practices for using the code contained in the `PPI/`
 
 As with the chapter [“Conservation Analysis”](#conservation-analysis), pLDDT extraction is performed automatically using the `select_plddt_CA.sh` script. It is used by `alphafold3_lis_contact.ipynb` and must be placed in its parent directory.
 
-- `alphafold3_lis_contact.ipynb`: is a modified version of [Kim et al. 2024](http://biorxiv.org/lookup/doi/10.1101/2024.02.19.580970), for the analysis of PAE, iPTM, LIS, cLIS, and LIA scores of a two-protein complex obtained by AF3. An example of input data has been placed in the folder `example_data/NFIL3_TBL1R/`. It can also generate a plot of the alpha-carbon pLDDTs for all residues, as well as plots of the LIS and cLIS values for the positive residues (maximum and average values) of each chain in the complex. The program's output is a CSV file containing the residues (filtered or unfiltered) with at least one positive LIS or cLIS value for each protein.
+- `alphafold3_lis_contact.ipynb`: is a modified version of [Kim et al. 2024](http://biorxiv.org/lookup/doi/10.1101/2024.02.19.580970), for the analysis of PAE, iPTM, LIS, cLIS, and LIA scores of a two protein complex obtained by AF3. An example of input data has been placed in the folder `example_data/NFIL3_TBL1R/`. It can also generate a plot of the alpha-carbon pLDDTs for all residues, as well as plots of the LIS and cLIS values for the positive residues (maximum and average values) of each chain in the complex. The program's output is a CSV file containing the residues (filtered or unfiltered) with at least one positive LIS or cLIS value for each protein.
 
 ### BioGRID data
 
