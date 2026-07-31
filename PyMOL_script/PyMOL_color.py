@@ -6,16 +6,16 @@ import pandas as pd
 from pymol import cmd
 
 
-def color_by_residues(key, file, sele="all", grad="rainbow_rev"):
+def color_by_residues(file, key="Conservation", sele="sele", grad="rainbow_rev"):
     """
     Color the residues based on the values in the jalview_output.json or data_all.csv files.
-    Can be used directly in PyMOL.
+    Used directly in PyMOL.
     
     Parameters:
-        key: Key in the file containing the values to be used for coloring (e.g., "Conservation"...)
-        file: Path to the file containing the values to be used
-        sele: PyMOL selection to color (default: “all”)
-        grad: List of colors defining the gradient (e.g., “blue_white_red”)
+        file: Path to the file containing the values to be used for coloring.
+        key: Key in the file containing the values to be used for coloring (default: "Conservation").
+        sele: PyMOL selection to color (default: “sele”).
+        grad: List of colors defining the gradient (e.g., “blue_white_red”).
     """
     
     # Check the file extension
